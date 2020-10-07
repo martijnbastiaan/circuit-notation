@@ -653,11 +653,11 @@ createInputs
   -> PortDescription PortName
   -- ^ master ports
   -> LHsExpr p
-createInputs nms Fwd slaves masters = noLoc $ OpApp noExt s2m (varE noSrcSpan (fwdBwdCon nms)) m2s
+createInputs nms Fwd slaves masters = noLoc $ OpApp noExt m2s (varE noSrcSpan (fwdBwdCon nms)) s2m
   where
   m2s = expWithSuffix nms "_Bwd" masters
   s2m = expWithSuffix nms "_Fwd" slaves
-createInputs nms Bwd slaves masters = noLoc $ OpApp noExt s2m (varE noSrcSpan (fwdBwdCon nms)) m2s
+createInputs nms Bwd slaves masters = noLoc $ OpApp noExt m2s (varE noSrcSpan (fwdBwdCon nms)) s2m
   where
   m2s = expWithSuffix nms "_Fwd" masters
   s2m = expWithSuffix nms "_Bwd" slaves
